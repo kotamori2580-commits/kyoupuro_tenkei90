@@ -1,6 +1,6 @@
 # 『競プロ典型90問』
 https://atcoder.jp/contests/typical90
-一旦~★4までを解く
+一旦~★3までを解く
 
 # テンプレ
 ```
