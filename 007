@@ -1,0 +1,53 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：RE
+ * 解法：二分探索
+ * * 【学んだこと・ポイント】
+ * ・sort(A.begin(), A.end())はvectorにしか使えない、他に使うならsort(A+1, A+N+1)
+ * * 【反省・詰まった点】
+ * ・Cの配列いらない、せっかく二分探索したのに計算量大きいまま
+ * * 【計算量】
+ * ・O(Q log N)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long A[300009];
+long long B[300009];
+long long C[300009];
+
+int main(){
+  int N;
+  cin >> N;
+  for(int i=1;i<=N;i++){
+    cin >> A[i];
+  }
+  int Q;
+  cin >> Q;
+  for(int j=1;j<=Q;j++){
+    cin >> B[j];
+  }
+  for(int j=1;j<=Q;j++){
+    int left=1;
+    int right=N;
+    for(int i=1;i<=N;i++){
+      C[i] = A[i]-B[j];
+    }
+    while(right-left>1){
+      int mid = (left+right)/2;
+      if(C[mid]>=0){
+        right = C[mid];
+      }
+      else{
+        left = C[mid];
+      }
+    }
+    if(abs(C[left]<C[right])){
+      cout << abs(C[left]) << "\n";
+    }
+    else{
+      cout << C[right] << "\n";
+    }
+  }
+}
