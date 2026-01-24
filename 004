@@ -1,0 +1,58 @@
+/**
+ * 難易度（体感）：★★☆☆☆
+ * 結果：RE
+ * 解法：全探索
+ * * 【学んだこと・ポイント】
+ * ・二次元のvectorの大きさ指定のやり方は、vector<vector<int>> A(2009, vector<int>(2009));とかく。
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(HW)
+ */
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> A(2009);
+vector<vector<int>> B(2009);
+vector<int> row_sum(2009);
+vector<int> col_sum(2009);
+
+int main(){
+  int H,W;
+  cin >> H >> W;
+  for(int i=1;i<=H;i++){
+    for(int j=1;j<=W;j++){
+      cin >> A[i][j];
+    }
+  }
+
+  for(int i=1;i<=H;i++){
+    for(int j=1;j<=W;j++){
+      row_sum[i] += A[i][j];
+    }
+  }
+  
+  for(int j=1;j<=W;j++){
+    for(int i=1;i<=H;i++){
+      col_sum[j] += A[i][j];
+    }
+  }
+  
+  for(int i=1;i<=H;i++){
+    for(int j=1;j<=W;j++){
+      B[i][j] = row_sum[i]+col_sum[j]-A[i][j];
+    }
+  }
+  
+  for(int i=1;i<=H;i++){
+    for(int j=1;j<=W;j++){
+      cout << B[i][j];
+      if(j<W){
+        cout << " "; 
+      }
+      else{
+        cout << "\n";
+      }
+    }
+  }
+}
