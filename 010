@@ -1,0 +1,44 @@
+/**
+ * 難易度（体感）：★★☆☆☆☆
+ * 結果：TLE
+ * 解法：累積和
+ * * 【学んだこと・ポイント】
+ * ・区間の合計を求めたいとき→累積和を用いる
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(NQ)
+ */
+ #include <bits/stdc++.h>
+using namespace std;
+
+long long C[100009];
+long long P[100009];
+long long L[100009];
+long long R[100009];
+
+int main(){
+  int N;
+  cin >> N;
+  for(int i=1;i<=N;i++){
+    cin >> C[i] >> P[i];
+  }
+  int Q;
+  cin >> Q;
+  for(int i=1;i<=Q;i++){
+    cin >> L[i] >> R[i];
+  }
+  for(int i=1;i<=Q;i++){
+    long long ans_1=0;
+    long long ans_2=0;
+    for(int j=L[i];j<=R[i];j++){
+      if(C[j]==1){
+        ans_1 += P[j];
+      }
+      else{
+        ans_2 += P[j];
+      }
+    }
+    cout << ans_1 << " " << ans_2 << "\n";
+  } 
+}
