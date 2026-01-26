@@ -1,0 +1,50 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：できなかった
+ * 解法：2変数の全探索
+ * * 【学んだこと・ポイント】
+ * ・「合計 9999 枚以下の硬貨でちょうど N 円を支払うことができる」というところからヒントを得る
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(5*10^7)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long P[5];
+long long a, b, c;
+
+int main(){
+  long long N, A, B, C;
+  cin >> N >> A >> B >> C;
+  P[1] = A;
+  P[2] = B;
+  P[3] = C;
+  sort(P+1, P+4, greater<long long>());
+  a = N/P[1];
+  if((N-P[1]*a)>0){
+    b = (N-P[1]*a)/P[2];
+    if((N-P[1]*a-P[2]*b)>0){
+      c = (N-P[1]*a-P[2]*b)/P[3];
+    }
+    else{
+      c=0;
+    }
+  }
+  else{
+    b=0;
+    c=0;
+  }
+  
+  while(a>0 && (N-P[1]*a-P[2]*b-P[3]*c)!=0){
+    a--;
+    b=(N-P[1]*a)/P[2];
+    while(b>0 && (N-P[1]*a-P[2]*b-P[3]*c)!=0){
+      b--;
+      c=(N-P[1]*a-P[2]*b)/P[3];
+    }
+  }
+  cout << (a+b+c) << "\n";
+}
