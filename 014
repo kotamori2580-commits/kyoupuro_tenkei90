@@ -1,0 +1,41 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：できなかった
+ * 解法：考察問題
+ * * 【学んだこと・ポイント】
+ * ・書き出して線で結んでみたら、解法浮かんだかも
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(N log N)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long A[100009];
+long long B[100009];
+long long E[100009];
+
+int main(){
+  int N;
+  cin >> N;
+  for(int i=1;i<=N;i++){
+    cin >> A[i];
+  }
+  
+  for(int i=1;i<=N;i++){
+    cin >> B[i];
+  }
+  sort(A+1, A+N+1);
+  sort(B+1, B+N+1);
+  for(int i=1;i<=N;i++){
+    E[i] = abs(A[i]-B[i]);
+  }
+  
+  long long ans=0;
+  for(int i=1;i<=N;i++){
+    ans += E[i];
+  }
+  cout << ans << "\n";
+}
