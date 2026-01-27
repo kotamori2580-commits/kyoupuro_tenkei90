@@ -1,0 +1,24 @@
+/**
+ * 難易度（体感）：★★☆☆☆
+ * 結果：解法は分かったがgcdの文法を知らなかった
+ * 解法：最大公約数
+ * * 【学んだこと・ポイント】
+ * ・関数gcdは引数を二つしか受け取れない
+ * * 【反省・詰まった点】
+ * ・gcdの計算量はlogN、内部でユークリッドの互除法を用いている
+ * * 【計算量】
+ * ・O(log(min(A, B, C)))
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+  long long A,B,C;
+  cin >> A >> B >> C;
+  long long p = gcd(A, B);
+  long long q = gcd(p, C);
+  long long ans=0;
+  ans = (A/q)+(B/q)+(C/q)-3;
+  cout << ans << "\n";
+}
