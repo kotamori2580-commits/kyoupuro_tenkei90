@@ -1,0 +1,37 @@
+/**
+ * 難易度（体感）：★★☆☆☆
+ * 結果：WA　惜しい！
+ * 解法：偶奇で場合分け
+ * * 【学んだこと・ポイント】
+ * ・Kがdisよりも大きいかの確認が抜けていた
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(N)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long A[1009],B[1009];
+
+int main(){
+  long long N,K;
+  cin >> N >> K;
+  for(int i=1;i<=N;i++){
+    cin >> A[i];
+  }
+  for(int i=1;i<=N;i++){
+    cin >> B[i];
+  }
+  long long dis=0;
+  for(int i=1;i<=N;i++){
+    dis += abs(A[i]-B[i]);
+  }
+  if((K-dis)%2 == 0){
+    cout << "Yes" << "\n";
+  }
+  else{
+    cout << "No" << "\n";
+  }
+}
