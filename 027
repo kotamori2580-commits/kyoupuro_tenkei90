@@ -1,0 +1,31 @@
+/**
+ * 難易度（体感）：★★☆☆☆
+ * 結果：できなかった
+ * 解法：setを使う
+ * * 【学んだこと・ポイント】
+ * ・setという集合を管理するデータ構造の使い方を学んだ
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(N log N)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+string S[100009];
+set<string> T;
+
+int main(){
+  long long N;
+  cin >> N;
+  for(int i=1;i<=N;i++){
+    cin >> S[i];
+  }
+  for(int i=1;i<=N;i++){
+    if(!T.count(S[i])){
+      cout << i << "\n";
+      T.insert(S[i]);
+    }
+  }  
+}
