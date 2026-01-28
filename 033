@@ -1,0 +1,31 @@
+/**
+ * 難易度（体感）：★★☆☆☆
+ * 結果：WA
+ * 解法：考察
+ * * 【学んだこと・ポイント】
+ * ・O(1)の単純な解法もあった
+ * * 【反省・詰まった点】
+ * ・H==1,W==1を考慮してなかった
+ * * 【計算量】
+ * ・O(N)
+ */
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+  int H,W;
+  cin >> H >> W;
+  vector<vector<char>> vec(H, vector<char>(W));
+  long long ans=0;
+  for(int i=0;i<H;i++){
+    if(i%2==0){
+      for(int j=0;j<W;j++){
+        if(j%2==0){
+          ans ++;
+        }
+      }
+    }
+  }
+  cout << ans << "\n";
+}
