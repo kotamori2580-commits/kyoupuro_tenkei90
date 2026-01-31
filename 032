@@ -3,10 +3,71 @@
  * 結果：できなかった
  * 解法：bitDP
  * * 【学んだこと・ポイント】
- * ・
+ * ・ビット全探索のやり方の復習になった
+ * ・N<20　→　ほぼ確実に BitDP か 全探索
+ * ・「順番」と「集合」が大事なとき→BitDPで集合を表す
+ * ・Nが小さい＆巡回系→bitDP
+
  * * 【反省・詰まった点】
  * ・次の記事を読む
 https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361#11-bit-dp
  * * 【計算量】
- * ・O(N log N)
+ * ・O((N^2)*(2^N))
  */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int A[19][19];
+const int INF = 1e9;
+
+int main(){
+  int N;
+  cin >> N;
+  for(int i=0;i<N;i++){
+    for(int j=0;j<N;j++){
+      cin >> A[i][j];
+    }
+  }
+  int M;
+  cin >> M;
+  vector<vector<bool>> bad(N, vector<bool>(N, false));
+  for(int i=0;i<M;i++){
+    int x,y;
+    cin >> x >> y;
+    bad[x-1][y-1] = true;
+    bad[y-1][x-1] = true;
+  }
+  
+  vector<vector<int>> dp(1<<N, vector<int>(N, INF));
+  
+  for(int i=0;i<N;i++){
+    dp[1<<i][i] = A[i][0];
+  }
+  
+  for(int s=0;s<(1<<N);s++){
+    int j = __builtin_popcount(s);
+    if(j == N) continue;
+    for(int v=0;v<N;v++){
+      if(!(s>>v & 1)|| dp[s][v] == INF){
+        continue;
+      }
+      for(int u=0;u<N;u++){
+        if(!(s>>u & 1) && !bad[v][u]){
+          int next_s = s | (1<<u);
+          dp[next_s][u] = min(dp[next_s][u], dp[s][v] + A[u][j]);
+        }
+      }
+    }
+  }
+  
+  int ans=INF;
+  for(int i=0;i<N;i++){
+    ans = min(ans, dp[(1<<N)-1][i]);
+  }
+  
+  if(ans == INF) cout << -1 << "\n";
+  else{
+    cout << ans << "\n";
+  }
+}
