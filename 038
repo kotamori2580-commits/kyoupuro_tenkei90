@@ -1,0 +1,27 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：AC
+ * 解法：lcm
+ * * 【学んだこと・ポイント】
+ * ・long long 型が扱える最大の数は約 9 * 10^18 までです
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(log(min(A,B)))
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+  long long A,B;
+  cin >> A >> B;
+  long long l;
+  l = lcm(A, B);
+  if(l>1000000000000000000){
+    cout << "Large" << "\n"; 
+  }
+  else{
+    cout << l << "\n";
+  }
+}
