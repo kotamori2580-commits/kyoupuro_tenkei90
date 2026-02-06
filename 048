@@ -1,0 +1,40 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：できなかった
+ * 解法：貪欲法
+ * * 【学んだこと・ポイント】
+ * ・dpかと思った
+ * ・制約に着目
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(N log N)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long A[1000009];
+long long B[1000009];
+long long point[10000009];
+
+int main(){
+  long long N,K;
+  cin >> N >> K;
+  for(int i=1;i<=N;i++){
+    cin >> A[i] >> B[i];
+  }
+  
+  for(int i=1;i<=N;i++){
+    point[i] = B[i];
+  }
+  for(int i=1;i<=N;i++){
+    point[N+i] = A[i]-B[i];
+  }
+  sort(point+1, point+2*N+1, greater<long long>());
+  long long ans=0;
+  for(int i=1;i<=K;i++){
+    ans += point[i];
+  }
+  cout << ans << "\n";
+}
