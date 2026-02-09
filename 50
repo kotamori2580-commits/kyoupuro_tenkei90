@@ -1,0 +1,29 @@
+/**
+ * 難易度（体感）：★★★☆☆
+ * 結果：CE
+ * 解法：dp
+ * * 【学んだこと・ポイント】
+ * ・再起関数はdpで表現する
+ * * 【反省・詰まった点】
+ * ・
+ * * 【計算量】
+ * ・O(N)
+ */
+
+ #include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+  long long N, K;
+  cin >> N >> K;
+  long long mod = 1000000000+7;
+  vector<long long> dp(N+1);
+  dp[0]=1;
+  for(int i=1;i<=N;i++){
+    dp[i] = dp[i-1];
+    if(i>=K){
+      dp[i] = (dp[i-1] + dp[i-K])%mod;
+    }
+  }
+  cout << dp[N] << "\n";
+}
